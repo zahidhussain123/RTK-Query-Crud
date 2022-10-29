@@ -47,6 +47,19 @@ export const postApi = createApi({
         };
       },
     }),
+
+    updatePost: builder.mutation({
+      query: (updatePost) => {
+        console.log("update post", updatePost);
+        const { id, ...data } = updatePost;
+        console.log("actual post", data);
+        return {
+          url: `posts/${id}`,
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -56,4 +69,5 @@ export const {
   useGetPostLimitsQuery,
   useDeletePostMutation,
   useCreatePostMutation,
+  useUpdatePostMutation,
 } = postApi;
