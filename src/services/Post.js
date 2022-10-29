@@ -36,6 +36,17 @@ export const postApi = createApi({
         };
       },
     }),
+
+    createPost: builder.mutation({
+      query: (newPost) => {
+        console.log("Post creation", newPost);
+        return {
+          url: "posts",
+          method: "POST",
+          body: newPost,
+        };
+      },
+    }),
   }),
 });
 
@@ -44,4 +55,5 @@ export const {
   useGetPostByIdQuery,
   useGetPostLimitsQuery,
   useDeletePostMutation,
+  useCreatePostMutation,
 } = postApi;

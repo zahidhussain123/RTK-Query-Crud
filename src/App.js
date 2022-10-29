@@ -1,4 +1,5 @@
 import {
+  useCreatePostMutation,
   useDeletePostMutation,
   useGetAllPostQuery,
   useGetPostByIdQuery,
@@ -10,10 +11,18 @@ function App() {
   // const { data: post, isError, isLoading, error } = useGetPostByIdQuery(5);
   const { data: posts, isError, isLoading, error } = useGetPostLimitsQuery(7);
   const [deletePost, res] = useDeletePostMutation();
+  const [createPost, response] = useCreatePostMutation();
   console.log(posts);
   console.log("error", res.isError);
   console.log("loading", res.isLoading);
   console.log("success", res.isSuccess); //clicking on delete button below will delete and here success will become true which will reflect that it is successfully deleted
+
+  const body = {
+    title: "My name is Zahid",
+    id: 5,
+    body: "I am React Developer",
+  };
+
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
@@ -65,6 +74,13 @@ function App() {
             <button onClick={() => deletePost(2)}>Delete</button>
           </div>
         ))}
+      </div>
+
+      {/* Create post  */}
+
+      <div>
+        <h2>Create post</h2>
+        <button onClick={() => createPost(body)}>Add post</button>
       </div>
     </div>
   );
